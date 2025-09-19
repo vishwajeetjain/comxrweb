@@ -6,52 +6,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ComXR - Bringing Ideas To Life</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+
+
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="nav_container">
-            <nav class="nav">
-
-                <div class="logo">
-                    <img src="assets/images/comxr-logo-white.png" alt="Company Logo" class="logo-img">
-                </div>
-                
-                <div class="nav-links">
-                    <a href="#about" class="nav-link">About Us</a>
-                    <a href="#work" class="nav-link">Solutions</a>
-                    <a href="#clients" class="nav-link">Clients</a>
-                    <a href="#contact" class="nav-link">Contact Us</a>
-                </div>
-                
-                <button class="mobile-menu-btn">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </nav>
-            
-            <div class="mobile-menu">
-                <a href="#about" class="mobile-nav-link">About Us</a>
-                <a href="#work" class="mobile-nav-link">Solutions</a>
-                <a href="#clients" class="mobile-nav-link">Clients</a>
-                <a href="#contact" class="mobile-nav-link">Contact Us</a>
+<header class="header">
+    <div class="nav_container">
+        <nav class="nav">
+            <div class="logo">
+                <img src="assets/images/comxr-logo-white.png" alt="Company Logo" class="logo-img">
             </div>
+            
+            <div class="nav-links">
+                <a href="#home" class="nav-link">HOME</a>
+                <a href="#about" class="nav-link">ABOUT US</a>
+                <a href="#xr-services" class="nav-link">WHAT WE DO</a>
+                
+                <!-- Solutions with Dropdown -->
+                <div class="nav-dropdown">
+                    <a href="#work" class="nav-link dropdown-trigger">
+                        SOLUTIONS
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu glass-card">
+                        <a href="automotive.html" class="dropdown-item">Automotive</a>
+                        <a href="healthcare.html" class="dropdown-item">Real Estate</a>
+                        <a href="retail.html" class="dropdown-item">Brand Engagement</a>
+                        <a href="education.html" class="dropdown-item">Education And Training</a>
+                    </div>
+                </div>
+                
+                <a href="#clients" class="nav-link">CLIENTS</a>
+                <a href="#contact" class="nav-link">CONTACT US</a>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+        
+        <div class="mobile-menu">
+            <a href="#home" class="mobile-nav-link">HOME</a>
+            <a href="#about" class="mobile-nav-link">ABOUT US</a>
+            <a href="#xr-services" class="mobile-nav-link">WHAT WE DO</a>
+            
+            <!-- Mobile Solutions Dropdown -->
+            <div class="mobile-dropdown">
+                <a href="#work" class="mobile-nav-link mobile-dropdown-trigger">SOLUTIONS</a>
+                <div class="mobile-dropdown-menu">
+                    <a href="automotive.html" class="mobile-dropdown-item">Automotive</a>
+                    <a href="healthcare.html" class="mobile-dropdown-item">Real Estate</a>
+                    <a href="retail.html" class="mobile-dropdown-item">Brand Engagement</a>
+                    <a href="education.html" class="mobile-dropdown-item">Education And Training</a>
+                </div>
+            </div>
+            
+            <a href="#clients" class="mobile-nav-link">CLIENTS</a>
+            <a href="#contact" class="mobile-nav-link">CONTACT US</a>
         </div>
+    </div>
     </header>
 
+
     <!-- Hero Section -->
-    <section class="hero" style="background-image: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.7)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop&crop=center'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <section id="home" class="hero" style="background-image: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.7)), url('assets/images/bg_7.png'); background-size: cover; background-position: center; background-attachment: fixed;">
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">Bringing Ideas To Life</h1>
-                <p class="hero-subtitle">
-                    We create unified experiences powered by world-class design, cutting-edge technology, 
-                    and human insight to transform your business and the lives of your customers.
-                </p>
+                <p class="hero-subtitle">Obsessed With Innovation</p>
                 <div class="cta-buttons">
-                    <button class="cta-button cta-transparent">Our Work</button>
-                    <button class="cta-button cta-transparent">Contact Us</button>
+                    <button class="cta-button cta-transparent"><a href="#about" > Let's Explore</a></button>
+                    <!-- <button class="cta-button cta-transparent">Contact Us</button> -->
                 </div>
 
             </div>
@@ -59,7 +93,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about" style="background-image: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=1080&fit=crop&crop=center'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <section id="about" class="about" style="background-image: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('assets/images/bg_2.png'); background-size: cover; background-position: center; background-attachment: fixed;">
         <div class="container">
             <div class="about-single-row">
                 <div class="about-title">
@@ -93,8 +127,145 @@
         </div>
     </section>
 
+    <section id="xr-services" class="xr-services section" style="background-image: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('assets/images/bg_5.png'); background-size: cover; background-position: center; background-attachment: fixed;">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">What We Do – <span>XR Services Built for the Future</span></h2>
+      <p class="section-subtitle">Explore our AR, VR, WebXR, AI+XR, and 3D content capabilities.</p>
+    </div>
+
+    <div class="xr-layout">
+  <!-- Vertical Tabs -->
+  <div class="tabs-col">
+    <div class="tabs" role="tablist" aria-label="XR services tabs" aria-orientation="vertical">
+      <button class="tab glass-tab is-active" role="tab" aria-selected="true" aria-controls="panel-ar" id="tab-ar" tabindex="1">
+        <img src="assets/icons/ar.png" alt="" aria-hidden="true" />
+        <p>Augmented Reality (AR) Development</p>
+      </button>
+      <button class="tab glass-tab" role="tab" aria-selected="false" aria-controls="panel-vr" id="tab-vr" tabindex="-1">
+        <img src="assets/icons/vr.png" alt="" aria-hidden="true" />
+        <p>Virtual Reality (VR) Solutions</p>
+      </button>
+      <button class="tab glass-tab" role="tab" aria-selected="false" aria-controls="panel-webxr" id="tab-webxr" tabindex="-1">
+        <img src="assets/icons/webxr.png" alt="" aria-hidden="true" />
+        <p>WebXR & Cross-Platform Deployments</p>
+      </button>
+      <button class="tab glass-tab" role="tab" aria-selected="false" aria-controls="panel-ai" id="tab-ai" tabindex="-1">
+        <img src="assets/icons/ai.png" alt="" aria-hidden="true" />
+        <p>AI-Integrated XR Experiences</p>
+      </button>
+      <button class="tab glass-tab" role="tab" aria-selected="false" aria-controls="panel-3d" id="tab-3d" tabindex="-1">
+        <img src="assets/icons/3d.png" alt="" aria-hidden="true" />
+        <p>3D Content Creation & Product Configurators</p>
+      </button>
+    </div>
+  </div>
+
+  <!-- Panels on the right -->
+  <div class="panels-col">
+    <div class="tab-panels">
+      
+      <!-- AR Development Panel -->
+      <div class="tab-panel glass-card" role="tabpanel" id="panel-ar" aria-labelledby="tab-ar">
+        <div class="service-split">
+          <div class="media">
+            <img src="assets/images/immersive_marketting.jpeg" alt="AR mobile application showing 3D product visualization" loading="lazy" />
+          </div>
+          <div class="copy">
+            <h3>🔍 Augmented Reality (AR) Development</h3>
+            <p>Deliver captivating AR experiences across mobile, web, and smart wearables. From try-before-you-buy apps to product visualization, our AR solutions elevate customer engagement and interactivity.</p>
+            <ul>
+              <li>Markerless & marker-based tracking</li>
+              <li>WebAR experiences (no app required)</li>
+              <li>AR for print media, packaging, retail, and marketing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- VR Solutions Panel -->
+      <div class="tab-panel glass-card" role="tabpanel" id="panel-vr" aria-labelledby="tab-vr" hidden>
+        <div class="service-split">
+          <div class="media">
+            <img src="assets/images/VR.jpeg" alt="VR headset user in immersive training simulation" loading="lazy" />
+          </div>
+          <div class="copy">
+            <h3>🕶 Virtual Reality (VR) Solutions</h3>
+            <p>Fully immersive, interactive 3D environments for simulation, training, entertainment, and product experience. We build VR applications that replicate real-world scenarios with precision.</p>
+            <ul>
+              <li>6DoF VR environments</li>
+              <li>VR training simulators for manufacturing, healthcare, and defense</li>
+              <li>VR-based walkthroughs for real estate and education</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- WebXR Panel -->
+      <div class="tab-panel glass-card" role="tabpanel" id="panel-webxr" aria-labelledby="tab-webxr" hidden>
+        <div class="service-split">
+          <div class="media">
+            <img src="assets/images/web_XR.jpeg" alt="Browser-based XR experience on multiple devices" loading="lazy" />
+          </div>
+          <div class="copy">
+            <h3>🌐 WebXR & Cross-Platform Deployments</h3>
+            <p>No downloads, no delays—just seamless immersive experiences delivered through the browser. We specialize in scalable, fast-loading WebXR applications with high fidelity.</p>
+            <ul>
+              <li>Lightweight, mobile-optimized XR deployments</li>
+              <li>Works across all major devices and browsers</li>
+              <li>Great for marketing, exhibitions, and product launches</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI + XR Panel -->
+      <div class="tab-panel glass-card" role="tabpanel" id="panel-ai" aria-labelledby="tab-ai" hidden>
+        <div class="service-split">
+          <div class="media">
+            <img src="assets/images/ai_generated.jpeg" alt="AI-powered virtual assistant in XR environment" loading="lazy" />
+          </div>
+          <div class="copy">
+            <h3>🧠 AI-Integrated XR Experiences</h3>
+            <p>We harness advanced AI to deliver immersive, context-aware XR solutions that transform user interactions. Our capabilities include:</p>
+            <ul>
+              <li>NLP-Powered Virtual Guides: Engage users with intuitive, conversational trainers and assistants</li>
+              <li>Object Detection & Spatial Awareness: Create seamless, responsive environments with real-time spatial understanding</li>
+              <li>Generative AI for Dynamic Scenes: Craft personalized, ever-evolving XR worlds tailored to user behavior</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Content Panel -->
+      <div class="tab-panel glass-card" role="tabpanel" id="panel-3d" aria-labelledby="tab-3d" hidden>
+        <div class="service-split">
+          <div class="media">
+            <img src="assets/images/3D.jpeg" alt="High-quality 3D product configurator interface" loading="lazy" />
+          </div>
+          <div class="copy">
+            <h3>🛠 3D Content Creation & Product Configurators</h3>
+            <p>High-quality, real-time 3D assets for visual storytelling, product showcases, and digital twins.</p>
+            <ul>
+              <li>Photorealistic 3D modeling and animation</li>
+              <li>Configurators for furniture, fashion, automotive, etc.</li>
+              <li>Optimized for real-time visualization platforms</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>
+
+
+
     <!-- Brand Showcase Section -->
-    <section id="work" class="brand-showcase" style="background-image: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop&crop=center'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <section id="work" class="brand-showcase" style="background-image: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('assets/images/bg_4.png'); background-size: cover; background-position: center; background-attachment: fixed;">
         <div class="container2">
             <div class="section-header">
                 <h2 class="section-title">We Build <span>Brands</span></h2>
@@ -106,15 +277,35 @@
             <div class="brand-grid">
                 <div class="brand-card">
                     <img src="assets/images/b1.png" alt="Brand 1" />
+                    <div class="brand-card-overlay">
+                    <div class="brand-overlay-content">
+                        <h3>Automotive</h3>
+                    </div>
+                </div>
                 </div>
                 <div class="brand-card">
                     <img src="assets/images/b2.png" alt="Brand 2" />
+                    <div class="brand-card-overlay">
+                    <div class="brand-overlay-content">
+                        <h3>Real Estate</h3>
+                    </div>
+                    </div>
                 </div>
                 <div class="brand-card">
                     <img src="assets/images/b3.png" alt="Brand 3" />
+                    <div class="brand-card-overlay">
+                    <div class="brand-overlay-content">
+                        <h3>Manufacturing</h3>
+                    </div>
+                    </div>
                 </div>
                 <div class="brand-card">
                     <img src="assets/images/b4.png" alt="Brand 4" />
+                    <div class="brand-card-overlay">
+                    <div class="brand-overlay-content">
+                        <h3>Brand Activation</h3>
+                    </div>
+                    </div>
                 </div>
                 <!-- <div class="brand-card">
                     <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=420&h=647&fit=crop&crop=center" alt="Brand 5" />
@@ -124,7 +315,7 @@
     </section>
 
     <!-- Why ComXR Section -->
-    <section id="services" class="why-section" style="background-image: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop&crop=center'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <section id="services" class="why-section" style="background-image: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('assets/images/bg_3.png'); background-size: cover; background-position: center; background-attachment: fixed;">
     <div class="container">
         <div class="section-header">
             <h2 class="section-title">Why <span>ComXR?</span></h2>
@@ -136,7 +327,7 @@
         <div class="why-grid">
             <div class="why-card">
                 <div class="why-icon">
-                    <img src="assets/images/Icon3.png" alt="Expertise" width="48" height="48" />
+                    <img src="assets/images/expertise.png" alt="Expertise" width="48" height="48" />
                 </div>
                 <div class="why-content">
                     <h3>Expertise</h3>
@@ -146,7 +337,7 @@
             
             <div class="why-card">
                 <div class="why-icon">
-                    <img src="assets/images/Icon2.png" alt="Client Centric Approach" width="48" height="48" />
+                    <img src="assets/images/consumer-centric.png" alt="Client Centric Approach" width="48" height="48" />
                 </div>
                 <div class="why-content">
                     <h3>Client-Centric Approach</h3>
@@ -156,7 +347,7 @@
             
             <div class="why-card">
                 <div class="why-icon">
-                    <img src="assets/images/Icon4.png" alt="Results Driven" width="48" height="48" />
+                    <img src="assets/images/statistics.png" alt="Results Driven" width="48" height="48" />
                 </div>
                 <div class="why-content">
                     <h3>Results-Driven Solutions</h3>
@@ -166,7 +357,7 @@
             
             <div class="why-card">
                 <div class="why-icon">
-                    <img src="assets/images/Icon1.png" alt="Collaborative Partnership" width="48" height="48" />
+                    <img src="assets/images/partners.png" alt="Collaborative Partnership" width="48" height="48" />
                 </div>
                 <div class="why-content">
                     <h3>Collaborative Partnership</h3>
@@ -179,7 +370,7 @@
 
 
     <!-- Client Logos Section -->
-    <section id="clients" class="clients" style="background-image: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=1080&fit=crop&crop=center'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <section id="clients" class="clients" style="background-image: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('assets/images/bg_4.png'); background-size: cover; background-position: center; background-attachment: fixed;">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Our <span>Clients</span></h2>
@@ -257,9 +448,11 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact" style="background-image: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop&crop=center'); background-size: cover; background-position: center; background-attachment: fixed;">
-        <div class="container">
-            <div class="contact-grid">
+  <section id="contact" class="contact" style="background-image: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('assets/images/bg_1.png'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="container">
+        <div class="contact-grid">
+            <!-- Left Column: Contact Info + Map -->
+            <div class="contact-left-column">
                 <div class="contact-info">
                     <h2 class="section-title">Contact <span>Us</span></h2>
                     <p class="contact-description">
@@ -294,7 +487,7 @@
                                 </svg>
                             </div>
                             <div>
-                                <p>ComXR Technologies</p>
+                                <p>ComXR</p>
                                 <p>386, Sane Guruji Building, Vir Savarkar Marg,</p>
                                 <p>Prabhadevi, Mumbai - 400025, India</p>
                             </div>
@@ -323,21 +516,196 @@
                     </div>
                 </div>
                 
-                <div class="contact-map">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.736543786!2d72.8310735!3d19.0147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ced70d31961b%3A0x96b8e8b0f4b11a!2sSane%20Guruji%20Building%2C%20Vir%20Savarkar%20Marg%2C%20Prabhadevi%2C%20Mumbai%2C%20Maharashtra%20400025!5e0!3m2!1sen!2sin!4v1642695300000!5m2!1sen!2sin" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0; border-radius: 12px;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                <!-- Map right below social icons -->
+                <div class="contact-map-wrapper">
+                    <!-- <h3 class="map-title">Find Us</h3> -->
+                    <div class="contact-map">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.736543786!2d72.8310735!3d19.0147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ced70d31961b%3A0x96b8e8b0f4b11a!2sSane%20Guruji%20Building%2C%20Vir%20Savarkar%20Marg%2C%20Prabhadevi%2C%20Mumbai%2C%20Maharashtra%20400025!5e0!3m2!1sen!2sin!4v1642695300000!5m2!1sen!2sin" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; border-radius: 12px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
                 </div>
             </div>
+
+            <!-- Right Column: Contact Form -->
+            <div class="contact-form-container glass-card">
+                <form class="contact-form" method="POST" action="process_contact.php" id="contactForm">
+                    <h3 class="form-title">Send us a Message</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name <span class="required">*</span></label>
+                            <input type="text" id="firstName" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name <span class="required">*</span></label>
+                            <input type="text" id="lastName" name="last_name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company Name</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Service Interest</label>
+                        <select id="service" name="service">
+                            <option value="">Select a service</option>
+                            <option value="ar">Augmented Reality (AR)</option>
+                            <option value="vr">Virtual Reality (VR)</option>
+                            <option value="webxr">WebXR</option>
+                            <option value="ai-xr">AI + XR</option>
+                            <option value="3d-content">3D Content Creation</option>
+                            <option value="consultation">General Consultation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject <span class="required">*</span></label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message <span class="required">*</span></label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project requirements..."></textarea>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="newsletter" value="1">
+                            <span class="checkmark"></span>
+                            Subscribe to our newsletter for updates and insights
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span>Send Message</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22,2 15,22 11,13 2,9 22,2"></polygon>
+                        </svg>
+                    </button>
+                </form>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <script src="script.js"></script>
+    <script>
+  (function () {
+    const tabs = document.querySelectorAll('#xr-services [role="tab"]');
+    const panels = document.querySelectorAll('#xr-services [role="tabpanel"]');
+
+    function activateTab(tab) {
+      // Deactivate all tabs
+      tabs.forEach(t => {
+        t.setAttribute('aria-selected', 'false');
+        t.classList.remove('is-active');
+        t.tabIndex = -1;
+      });
+      // Hide all panels
+      panels.forEach(p => p.hidden = true);
+
+      // Activate current
+      tab.setAttribute('aria-selected', 'true');
+      tab.classList.add('is-active');
+      tab.tabIndex = 0;
+
+      const panelId = tab.getAttribute('aria-controls');
+      document.getElementById(panelId).hidden = false;
+      tab.focus();
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => activateTab(tab));
+      tab.addEventListener('keydown', (e) => {
+        const currentIndex = Array.prototype.indexOf.call(tabs, tab);
+        let newIndex = null;
+        if (e.key === 'ArrowRight') newIndex = (currentIndex + 1) % tabs.length;
+        if (e.key === 'ArrowLeft') newIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+        if (newIndex !== null) {
+          e.preventDefault();
+          activateTab(tabs[newIndex]);
+        }
+        if (e.key === 'Home') { e.preventDefault(); activateTab(tabs); }
+        if (e.key === 'End') { e.preventDefault(); activateTab(tabs[tabs.length - 1]); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateTab(tab); }
+      });
+    });
+  })();
+
+  // If you already have the earlier script, you can keep it as-is.
+// Optional: prefer Up/Down for vertical orientation.
+(function () {
+  const root = document.querySelector('#xr-services');
+  if (!root) return;
+
+  const tabs = root.querySelectorAll('[role="tab"]');
+  const panels = root.querySelectorAll('[role="tabpanel"]');
+
+  function activateTab(tab) {
+    tabs.forEach(t => {
+      t.setAttribute('aria-selected', 'false');
+      t.classList.remove('is-active');
+      t.tabIndex = -1;
+    });
+    panels.forEach(p => p.hidden = true);
+
+    tab.setAttribute('aria-selected', 'true');
+    tab.classList.add('is-active');
+    tab.tabIndex = 0;
+
+    const id = tab.getAttribute('aria-controls');
+    const panel = root.querySelector('#' + id);
+    if (panel) panel.hidden = false;
+    tab.focus();
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => activateTab(tab));
+    tab.addEventListener('keydown', (e) => {
+      const list = Array.from(tabs);
+      const i = list.indexOf(tab);
+      let j = null;
+
+      // Vertical orientation: Up/Down preferred (per APG)
+      if (e.key === 'ArrowDown') j = (i + 1) % list.length;
+      if (e.key === 'ArrowUp') j = (i - 1 + list.length) % list.length;
+
+      // Fallback Left/Right also supported
+      if (e.key === 'ArrowRight') j = (i + 1) % list.length;
+      if (e.key === 'ArrowLeft') j = (i - 1 + list.length) % list.length;
+
+      if (e.key === 'Home') { e.preventDefault(); activateTab(list); return; }
+      if (e.key === 'End') { e.preventDefault(); activateTab(list[list.length - 1]); return; }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateTab(tab); return; }
+
+      if (j !== null) { e.preventDefault(); activateTab(list[j]); }
+    });
+  });
+})();
+
+</script>
+
 </body>
 </html>

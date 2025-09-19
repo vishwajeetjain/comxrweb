@@ -142,14 +142,139 @@ window.addEventListener('load', () => {
     }, 100);
 });
 
-// Console welcome message
-console.log(`
-🚀 ComXR Website Loaded Successfully!
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✨ Features:
-   • Dark theme with glass morphism effects
-   • Smooth animations and transitions
-   • Responsive design for all devices
-   • Interactive navigation and components
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-`);
+// Dropdown Menu Functionality (add this to your existing script.js)
+document.addEventListener('DOMContentLoaded', function() {
+    // Desktop dropdown - close on click outside
+    const dropdowns = document.querySelectorAll('.nav-dropdown');
+    
+    document.addEventListener('click', function(event) {
+        dropdowns.forEach(dropdown => {
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+    });
+
+    // Mobile dropdown toggle
+    const mobileDropdownTriggers = document.querySelectorAll('.mobile-dropdown-trigger');
+    
+    mobileDropdownTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdown = this.closest('.mobile-dropdown');
+            const isActive = dropdown.classList.contains('active');
+            
+            // Close all other dropdowns
+            document.querySelectorAll('.mobile-dropdown').forEach(d => {
+                d.classList.remove('active');
+            });
+            
+            // Toggle current dropdown
+            if (!isActive) {
+                dropdown.classList.add('active');
+            }
+        });
+    });
+
+    // Close mobile dropdown when clicking on items
+    const mobileDropdownItems = document.querySelectorAll('.mobile-dropdown-item');
+    mobileDropdownItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Close mobile menu
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (mobileMenu && mobileMenuBtn) {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+            }
+            
+            // Close dropdown
+            document.querySelectorAll('.mobile-dropdown').forEach(d => {
+                d.classList.remove('active');
+            });
+        });
+    });
+
+    // Prevent dropdown from closing when clicking inside it
+    const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+    dropdownMenus.forEach(menu => {
+        menu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    });
+});
+
+// Contact Form Handler
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = '<span>Sending...</span>';
+            submitBtn.disabled = true;
+            
+            try {
+                const formData = new FormData(contactForm);
+                
+                const response = await fetch('process_contact.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show success message
+                    showMessage(result.message, 'success');
+                    contactForm.reset();
+                } else {
+                    showMessage(result.message, 'error');
+                }
+            } catch (error) {
+                showMessage('Network error. Please check your connection and try again.', 'error');
+                console.error('Form submission error:', error);
+            } finally {
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
+    
+    // Show message function
+    function showMessage(message, type) {
+        // Remove existing messages
+        const existingMessage = document.querySelector('.form-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+        
+        // Create message element
+        const messageEl = document.createElement('div');
+        messageEl.className = `form-message form-message-${type}`;
+        messageEl.textContent = message;
+        
+        // Insert message
+        const form = document.getElementById('contactForm');
+        form.insertBefore(messageEl, form.firstChild);
+        
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+            if (messageEl.parentNode) {
+                messageEl.remove();
+            }
+        }, 5000);
+        
+        // Scroll to message
+        messageEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+});
+
+

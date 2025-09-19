@@ -1,0 +1,130 @@
+/* Automotive page specific styles */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.problem-card, .challenges-card {
+  padding: 32px;
+}
+
+.challenge-icons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.challenge-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  text-align: left;
+}
+
+.challenge-icon {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3b82f6;
+  flex-shrink: 0;
+}
+
+.solution-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.solution-block {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 32px;
+  align-items: center;
+  padding: 32px;
+}
+
+.solution-block.reverse {
+  grid-template-columns: 1.2fr 1fr;
+}
+
+.solution-media img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  padding: 24px;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.cta-panel {
+  padding: 48px;
+  text-align: center;
+}
+
+.cta-panel h2 {
+  margin-bottom: 16px;
+  font-size: 2rem;
+}
+
+.cta-panel p {
+  max-width: 800px;
+  margin: 0 auto 24px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .problem-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .solution-block,
+  .solution-block.reverse {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .challenge-icons {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

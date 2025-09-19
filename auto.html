@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industries We Serve - Circular Design</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0a 70%);
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(120, 119, 198, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 107, 107, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 75% 25%, rgba(72, 187, 120, 0.15) 0%, transparent 50%);
+            animation: bgFloat 25s ease-in-out infinite;
+        }
+
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Main Container */
+        .circular-container {
+            position: relative;
+            width: min(90vw, 90vh);
+            height: min(90vw, 90vh);
+            max-width: 800px;
+            max-height: 800px;
+            animation: containerFloat 20s ease-in-out infinite;
+        }
+
+        /* Center Element */
+        .center-element {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 280px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(30px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 10;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: centerPulse 4s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        .center-element::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(120, 119, 198, 0.5) 0%, 
+                rgba(255, 107, 107, 0.5) 25%, 
+                rgba(72, 187, 120, 0.5) 50%, 
+                rgba(255, 193, 7, 0.5) 75%, 
+                rgba(156, 39, 176, 0.5) 100%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: borderRotate 8s linear infinite;
+        }
+
+        .center-element:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .center-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #a8a8a8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .center-subtitle {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        /* Orbital Ring */
+        .orbital-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: ringRotate 60s linear infinite;
+        }
+
+        /* Industry Cards Container - This rotates */
+        .industry-orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            animation: orbitRotate 60s linear infinite;
+        }
+
+        /* Individual Industry Cards - These counter-rotate to stay upright */
+        .industry-card {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px 16px;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-origin: center;
+            /* Counter-rotate to keep text upright */
+            animation: cardFloat 8s ease-in-out infinite, counterRotate 60s linear infinite;
+        }
+
+        /* Position cards in a circle */
+        .industry-card:nth-child(1) {
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 0s, 0s;
+        }
+
+        .industry-card:nth-child(2) {
+            top: 14.6%;
+            right: 14.6%;
+            transform: translate(50%, -50%);
+            animation-delay: 1s, 0s;
+        }
+
+        .industry-card:nth-child(3) {
+            top: 50%;
+            right: 0;
+            transform: translate(50%, -50%);
+            animation-delay: 2s, 0s;
+        }
+
+        .industry-card:nth-child(4) {
+            bottom: 14.6%;
+            right: 14.6%;
+            transform: translate(50%, 50%);
+            animation-delay: 3s, 0s;
+        }
+
+        .industry-card:nth-child(5) {
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 50%);
+            animation-delay: 4s, 0s;
+        }
+
+        .industry-card:nth-child(6) {
+            bottom: 14.6%;
+            left: 14.6%;
+            transform: translate(-50%, 50%);
+            animation-delay: 5s, 0s;
+        }
+
+        .industry-card:nth-child(7) {
+            top: 50%;
+            left: 0;
+            transform: translate(-50%, -50%);
+            animation-delay: 6s, 0s;
+        }
+
+        .industry-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(120, 119, 198, 0.1) 0%, rgba(255, 107, 107, 0.05) 50%, rgba(72, 187, 120, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            border-radius: 24px;
+        }
+
+        .industry-card:hover::before {
+            opacity: 1;
+        }
+
+        /* FIXED: Removed rotation from hover, only scale */
+        .industry-card:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            z-index: 20;
+        }
+
+        .industry-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(120, 119, 198, 0.2) 0%, rgba(255, 107, 107, 0.2) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .industry-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transition: all 0.6s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .industry-card:hover .industry-icon::before {
+            width: 80px;
+            height: 80px;
+        }
+
+        /* FIXED: Removed icon rotation on hover */
+        .industry-card:hover .industry-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.3) 0%, rgba(120, 119, 198, 0.3) 100%);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .industry-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+            transition: all 0.4s ease;
+            line-height: 1.2;
+        }
+
+        .industry-card:hover .industry-title {
+            color: #f8f9ff;
+            transform: translateY(-2px);
+        }
+
+        .industry-subtitle {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.4s ease;
+        }
+
+        .industry-card:hover .industry-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Connection Lines */
+        .connection-lines {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .connection-line {
+            position: absolute;
+            width: 2px;
+            height: 40%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+            transform-origin: bottom center;
+            animation: lineGlow 3s ease-in-out infinite;
+        }
+
+        .connection-line:nth-child(1) {
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%) rotate(0deg);
+            animation-delay: 0s;
+        }
+
+        .connection-line:nth-child(2) {
+            top: 25%;
+            right: 25%;
+            transform: rotate(45deg);
+            animation-delay: 0.4s;
+        }
+
+        .connection-line:nth-child(3) {
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%) rotate(90deg);
+            animation-delay: 0.8s;
+        }
+
+        .connection-line:nth-child(4) {
+            bottom: 25%;
+            right: 25%;
+            transform: rotate(135deg);
+            animation-delay: 1.2s;
+        }
+
+        .connection-line:nth-child(5) {
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg);
+            animation-delay: 1.6s;
+        }
+
+        .connection-line:nth-child(6) {
+            bottom: 25%;
+            left: 25%;
+            transform: rotate(225deg);
+            animation-delay: 2s;
+        }
+
+        .connection-line:nth-child(7) {
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%) rotate(270deg);
+            animation-delay: 2.4s;
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: particleFloat 15s linear infinite;
+        }
+
+        .particle:nth-child(1) {
+            top: 20%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            top: 30%;
+            right: 30%;
+            animation-delay: 5s;
+        }
+
+        .particle:nth-child(3) {
+            bottom: 40%;
+            left: 40%;
+            animation-delay: 10s;
+        }
+
+        .particle:nth-child(4) {
+            bottom: 20%;
+            right: 20%;
+            animation-delay: 7s;
+        }
+
+        .particle:nth-child(5) {
+            top: 60%;
+            left: 60%;
+            animation-delay: 3s;
+        }
+
+        /* Animations */
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        @keyframes containerFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        @keyframes centerPulse {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        @keyframes borderRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes ringRotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes orbitRotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+
+        /* Counter-rotation to keep cards upright */
+        @keyframes counterRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes lineGlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes particleFloat {
+            0% { 
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .circular-container {
+                width: 95vw;
+                height: 95vw;
+            }
+            
+            .center-element {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .center-title {
+                font-size: 1.6rem;
+            }
+            
+            .industry-card {
+                width: 140px;
+                height: 140px;
+                padding: 16px 12px;
+            }
+            
+            .industry-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+            }
+            
+            .industry-title {
+                font-size: 0.9rem;
+            }
+            
+            .industry-subtitle {
+                font-size: 0.65rem;
+            }
+        }
+
+        /* Interactive Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(120, 119, 198, 0.6), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="grain"></div>
+    <div class="custom-cursor"></div>
+
+    <div class="circular-container">
+        <!-- Orbital Ring -->
+        <div class="orbital-ring"></div>
+
+        <!-- Connection Lines -->
+        <div class="connection-lines">
+            <div class="connection-line"></div>
+            <div class="connection-line"></div>
+            <div class="connection-line"></div>
+            <div class="connection-line"></div>
+            <div class="connection-line"></div>
+            <div class="connection-line"></div>
+            <div class="connection-line"></div>
+        </div>
+
+        <!-- Floating Particles -->
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <!-- Center Element -->
+        <div class="center-element" onclick="handleCenterClick()">
+            <h1 class="center-title">Industries We Serve</h1>
+            <p class="center-subtitle">Innovation Across Sectors</p>
+        </div>
+
+        <!-- Orbiting Industry Cards -->
+        <div class="industry-orbit">
+            <div class="industry-card" onclick="handleIndustryClick('automotive')">
+                <div class="industry-icon">🚗</div>
+                <h3 class="industry-title">Automotive</h3>
+                <span class="industry-subtitle">Mobility</span>
+            </div>
+
+            <div class="industry-card" onclick="handleIndustryClick('gaming')">
+                <div class="industry-icon">🎮</div>
+                <h3 class="industry-title">Gaming & Media</h3>
+                <span class="industry-subtitle">Entertainment</span>
+            </div>
+
+            <div class="industry-card" onclick="handleIndustryClick('education')">
+                <div class="industry-icon">🎓</div>
+                <h3 class="industry-title">Education</h3>
+                <span class="industry-subtitle">Learning</span>
+            </div>
+
+            <div class="industry-card" onclick="handleIndustryClick('realestate')">
+                <div class="industry-icon">🏢</div>
+                <h3 class="industry-title">Real Estate</h3>
+                <span class="industry-subtitle">Property</span>
+            </div>
+
+            <div class="industry-card" onclick="handleIndustryClick('retail')">
+                <div class="industry-icon">🛒</div>
+                <h3 class="industry-title">Retail</h3>
+                <span class="industry-subtitle">Commerce</span>
+            </div>
+
+            <div class="industry-card" onclick="handleIndustryClick('healthcare')">
+                <div class="industry-icon">⚕️</div>
+                <h3 class="industry-title">Healthcare</h3>
+                <span class="industry-subtitle">Medical</span>
+            </div>
+
+            <div class="industry-card" onclick="handleIndustryClick('manufacturing')">
+                <div class="industry-icon">⚙️</div>
+                <h3 class="industry-title">Manufacturing</h3>
+                <span class="industry-subtitle">Industrial</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Industry click handler
+        function handleIndustryClick(industry) {
+            console.log(`Selected industry: ${industry}`);
+            
+            // Add click animation
+            event.target.closest('.industry-card').style.transform = 'scale(1.2)';
+            event.target.closest('.industry-card').style.zIndex = '50';
+            
+            setTimeout(() => {
+                event.target.closest('.industry-card').style.transform = '';
+                event.target.closest('.industry-card').style.zIndex = '';
+                
+                // Navigate to industry page
+                // window.location.href = `/industries/${industry}`;
+            }, 300);
+        }
+
+        // Center click handler
+        function handleCenterClick() {
+            console.log('Center clicked - showing all industries');
+            
+            // Add center click animation
+            document.querySelector('.center-element').style.transform = 'translate(-50%, -50%) scale(1.1)';
+            
+            setTimeout(() => {
+                document.querySelector('.center-element').style.transform = 'translate(-50%, -50%) scale(1.05)';
+            }, 200);
+        }
+
+        // Custom cursor
+        document.addEventListener('DOMContentLoaded', () => {
+            const cursor = document.querySelector('.custom-cursor');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX - 10 + 'px';
+                cursor.style.top = e.clientY - 10 + 'px';
+            });
+
+            // Enhanced hover effects
+            document.querySelectorAll('.industry-card, .center-element').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(2)';
+                });
+                
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                });
+            });
+        });
+
+        // Pause animations on hover for better UX
+        document.querySelectorAll('.industry-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                document.querySelector('.industry-orbit').style.animationPlayState = 'paused';
+                document.querySelector('.orbital-ring').style.animationPlayState = 'paused';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                document.querySelector('.industry-orbit').style.animationPlayState = 'running';
+                document.querySelector('.orbital-ring').style.animationPlayState = 'running';
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                const focusedElement = document.activeElement;
+                if (focusedElement.classList.contains('industry-card') || 
+                    focusedElement.classList.contains('center-element')) {
+                    focusedElement.click();
+                }
+            }
+        });
+
+        // Performance optimization
+        let animationId;
+        function optimizeAnimations() {
+            // Reduce animations when not in focus
+            if (document.hidden) {
+                document.querySelectorAll('*').forEach(el => {
+                    el.style.animationPlayState = 'paused';
+                });
+            } else {
+                document.querySelectorAll('*').forEach(el => {
+                    el.style.animationPlayState = 'running';
+                });
+            }
+        }
+
+        document.addEventListener('visibilitychange', optimizeAnimations);
+    </script>
+</body>
+</html>
